@@ -1,0 +1,42 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "main": ".dist/app.js",
+  "scripts": {
+    "dev": "FORCE_COLOR=3 ts-node-dev --respawn --watch ./routes,./controllers --no-notify --log-error --pretty ./app.ts",
+    "type-check": "FORCE_COLOR=3 tsc --noEmit --pretty --watch --preserveWatchOutput",
+    "dev:full": "concurrently -c \"bgBlue.bold,bgRed.bold\" -n \"TYPE_CHECK,SERVER\" \"npm run type-check\" \"npm run dev\"",
+    "build": "tsc --outDir .dist",
+    "start": "node .dist/app.js",
+    "prod": "npm run build && npm run start",
+    "lint": "eslint . --ext .ts",
+    "clean": "rm -rf .dist"
+  },
+  "keywords": [],
+  "author": "Taron",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.14.2",
+    "nodemailer": "^7.0.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.1",
+    "@types/mongoose": "^5.11.96",
+    "@types/node": "^22.15.17",
+    "@types/nodemailer": "^6.4.17",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "concurrently": "^9.1.2",
+    "eslint": "^8.56.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
