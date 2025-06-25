@@ -15,6 +15,8 @@ async function Start(): Promise<void> {
     console.log('✅ DB connected');
   } catch (e) {
     console.error('❌ Can’t access DB');
+    console.log(e);
+    
     throw new Error('Can not access to DB');
   }
 }
@@ -28,5 +30,5 @@ app.use('/users', route_user);
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 app.listen(PORT, () => {
-  console.log(`App listens on http://localhost:${PORT}`);
+  console.log(`App listens on ${process.env.APP}:${PORT}`);
 });
