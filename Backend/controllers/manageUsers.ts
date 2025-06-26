@@ -38,6 +38,7 @@ export async function CreateUser(req: Request, res: Response): Promise<void> {
   try {
     const { email, password } = req.body;
     console.log('Works');
+    console.log(email,password);
     
     const hashPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ email, password: hashPassword });
