@@ -23,18 +23,12 @@ async function Start(): Promise<void> {
 
 Start();
 
-app.use(cors({
-  origin: 'https://photo-editor-blue.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
-}));
 
-app.options('*', cors());
-
+app.use(cors())
 
 app.use(express.json());
 app.use('/users', route_user);
+
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 
