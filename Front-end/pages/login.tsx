@@ -15,7 +15,9 @@ export default function Login() {
   const handleCreate = useCallback( async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         try{
-            const response = await axios.post(import.meta.env.VITE_APP + '/users',{email : user.email , password : user.password});
+           alert(user.email + user.password);
+          
+            const response = await axios.post(import.meta.env.VITE_APP + '/users', {email : user.email , password : user.password});
             console.log('Response' , response);
             alert(response.data.message);
         }catch (error: any) {

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from 'react';
 
-const Login = lazy(() => import('../pages/create'));
+const Login = lazy(() => import('../pages/login'));
 const Forogt = lazy( () => import('../pages/forgot'));
 const ImageEditor = lazy (() => import('../pages/Home'));
 const Reset = lazy(() => import('../pages/RESET'));

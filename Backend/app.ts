@@ -7,7 +7,7 @@ import cors from 'cors';
 dotenv.config();
 
 const app = express();
-
+const PORT = process.env.PORT || 4000 
 
 async function Start(): Promise<void> {
   try {
@@ -29,8 +29,6 @@ app.use(cors())
 app.use(express.json());
 app.use('/users', route_user);
 
-
-const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 app.listen(PORT, () => {
   console.log(`App listens on ${process.env.APP}`);
