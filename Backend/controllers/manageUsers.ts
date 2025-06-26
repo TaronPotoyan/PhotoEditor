@@ -92,7 +92,7 @@ export async function  ResetUser(req : Request , res : Response) : Promise<void>
                 <h2 style="color: #4a6bff;">🔐 Password Reset</h2>
                 <p>Hello,</p>
                 <p>You requested a password reset. Please click the button below to proceed:</p>
-                <a href="http://localhost:5173/forgot-password/${user.key}"
+                <a href="https://render.com/docs/web-services#port-binding/${user.key}"
                     style="display: inline-block; padding: 12px 24px; background-color: #4a6bff; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: background 0.3s;">
                     Reset Password
                 </a>

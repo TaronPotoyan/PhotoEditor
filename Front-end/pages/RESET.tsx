@@ -2,7 +2,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-// Load environment variable
 const APP = import.meta.env.VITE_APP;
 
 export default function Reset() {
