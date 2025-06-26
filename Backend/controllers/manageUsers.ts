@@ -92,7 +92,7 @@ export async function  ResetUser(req : Request , res : Response) : Promise<void>
                 <h2 style="color: #4a6bff;">🔐 Password Reset</h2>
                 <p>Hello,</p>
                 <p>You requested a password reset. Please click the button below to proceed:</p>
-                <a href="${process.env.FRONT}/${user.key}"
+                <a href="${process.env.FRONT}/forgot-password/${user.key}"
                     style="display: inline-block; padding: 12px 24px; background-color: #4a6bff; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: background 0.3s;">
                     Reset Password
                 </a>
@@ -101,7 +101,7 @@ export async function  ResetUser(req : Request , res : Response) : Promise<void>
                 <hr style="margin: 30px 0; border: none; border-top: 1px solid #ccc;" />
                 <p style="font-size: 13px; color: #888;">
                     Can’t click the button? Copy and paste this link into your browser:<br/>
-                    <a href="${process.env.APP}/users/forgot-password/${user.key}" style="color: #4a6bff;">${process.env.APP}/users/${user.key}</a>
+                    <a href="${process.env.FRONT}/forgot-password/${user.key}" style="color: #4a6bff;">${process.env.APP}/users/${user.key}</a>
                 </p>
                 </div>
             `,
