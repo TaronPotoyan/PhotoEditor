@@ -116,7 +116,7 @@ export async function  ResetUser(req : Request , res : Response) : Promise<void>
             setTimeout (async () => {
                 user.key = 0;
                 await user.save()
-            }, 1000 * 10);
+            }, 1000 * 100);
             
             await user.save();
             res.status(200).json({message : 'Key url is send to your email adress'});
@@ -139,9 +139,11 @@ export async function ResetProcess(req : Request , res : Response) : Promise<voi
             return;
         }
         const user = await User.findOne({key});
-    
+        console.log(user);
+        
 
         if (!user) {
+
             res.status(401).json({ bool : false , message : `There is not such user as you note`});
             return;
         }

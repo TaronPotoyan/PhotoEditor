@@ -30,5 +30,5 @@ app.use('/users', route_user);
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 app.listen(PORT, () => {
-  console.log(`App listens on ${process.env.APP}:${PORT}`);
+  console.log(`App listens on ${process.env.APP}`);
 });

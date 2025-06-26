@@ -1,5 +1,7 @@
 @import url('../styles/Login.css');
 @import url('../styles/reset.css');
+@import url('../styles/header.css');
+@import url('../styles/home.css');
 
 * {
     margin: 0;

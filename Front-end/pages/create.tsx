@@ -35,6 +35,7 @@ export default function Login() {
             alert (response.data.message)
             navigate('/');
         }        
+        localStorage.setItem('Picture_editor', JSON.stringify({email : user.email}));
         navigate('/home')
     } catch (e: any) {
         alert(e.response?.data?.message || e.message || 'Login failed');
