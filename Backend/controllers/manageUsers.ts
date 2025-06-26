@@ -101,7 +101,7 @@ export async function  ResetUser(req : Request , res : Response) : Promise<void>
                 <hr style="margin: 30px 0; border: none; border-top: 1px solid #ccc;" />
                 <p style="font-size: 13px; color: #888;">
                     Can’t click the button? Copy and paste this link into your browser:<br/>
-                    <a href="${process.env.APP}/users/${user.key}" style="color: #4a6bff;">${process.env.APP}/users/${user.key}</a>
+                    <a href="${process.env.APP}/users/forgot-password/${user.key}" style="color: #4a6bff;">${process.env.APP}/users/${user.key}</a>
                 </p>
                 </div>
             `,
