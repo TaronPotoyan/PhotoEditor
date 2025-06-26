@@ -7,46 +7,55 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState({ email: '', password: '' });
 
-  const handleReset = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const togglePassword = () => setShowPassword(prev => !prev);
+
+  const handleReset = useCallback(() => {
     navigate('/forgot-password');
   }, [navigate]);
 
-  const handleCreate = useCallback( async (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        try{
-           alert(user.email + user.password);
-          
-            const response = await axios.post(import.meta.env.VITE_APP + '/users', {email : user.email , password : user.password});
-            console.log('Response' , response);
-            alert(response.data.message);
-        }catch (error: any) {
-          console.error('Create error:', error);
-          alert(error.response?.data?.message || error.message || 'Account creation failed');
-        }
+  const handleCreate = useCallback(async () => {
+    if (!user.email || !user.password) {
+      alert('Please enter both email and password to create an account.');
+      return;
+    }
 
-        return
-  }, [navigate]);
-
-  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     try {
-        const response = await axios.post(import.meta.env.VITE_APP + '/users/spec', {
-            email: user.email,
-            password: user.password
-        });
-        if (!response.data.bool) {
-            alert (response.data.message)
-            navigate('/');
-        }        
-        localStorage.setItem('Picture_editor', JSON.stringify({email : user.email}));
-        navigate('/home')
-    } catch (e: any) {
-        alert(e.response?.data?.message || e.message || 'Login failed');
+      const response = await axios.post(
+        import.meta.env.VITE_APP + '/users',
+        { email: user.email, password: user.password }
+      );
+      alert(response.data.message || 'Account created successfully');
+    } catch (error: any) {
+      console.error('Create error:', error);
+      alert(error.response?.data?.message || error.message || 'Account creation failed');
     }
   }, [user]);
 
-  const togglePassword = () => setShowPassword(prev => !prev);
+  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!user.email || !user.password) {
+      alert('Please enter both email and password to log in.');
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_APP + '/users/spec',
+        { email: user.email, password: user.password }
+      );
+
+      if (!response.data.bool) {
+        alert(response.data.message || 'Invalid login');
+        return;
+      }
+
+      localStorage.setItem('Picture_editor', JSON.stringify({ email: user.email }));
+      navigate('/home');
+    } catch (e: any) {
+      alert(e.response?.data?.message || e.message || 'Login failed');
+    }
+  }, [user, navigate]);
 
   return (
     <div className="container">
@@ -56,7 +65,9 @@ export default function Login() {
           type="email"
           id="email"
           name="email"
+          value={user.email}
           onChange={(e) => setUser({ ...user, email: e.target.value })}
+          required
         />
 
         <label htmlFor="password">Password:</label>
@@ -65,8 +76,10 @@ export default function Login() {
             type={showPassword ? 'text' : 'password'}
             id="password"
             name="password"
+            value={user.password}
             style={{ width: '100%', paddingRight: '2.5em' }}
             onChange={(e) => setUser({ ...user, password: e.target.value })}
+            required
           />
           <span
             onClick={togglePassword}
@@ -88,9 +101,9 @@ export default function Login() {
           </span>
         </div>
 
-        <button type="submit">Login</button>
+        <button type="submit" style={{ marginTop: '1rem' }}>Login</button>
 
-        <button type="button" onClick={handleReset} style={{ marginTop: '1rem' }}>
+        <button type="button" onClick={handleReset} style={{ marginTop: '0.5rem' }}>
           Reset Password
         </button>
 
