@@ -18,9 +18,11 @@ export default function Login() {
             const response = await axios.post(import.meta.env.VITE_APP + '/users',{email : user.email , password : user.password});
             console.log('Response' , response);
             alert(response.data.message);
-        }catch (e) {
-            alert(e);
+        }catch (error: any) {
+          console.error('Create error:', error);
+          alert(error.response?.data?.message || error.message || 'Account creation failed');
         }
+
         return
   }, [navigate]);
 
